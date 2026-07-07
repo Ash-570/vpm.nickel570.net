@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./app
+    container_name: vpm-repo-web
+    restart: unless-stopped
+    volumes:
+      - ./data:/data
+    ports:
+      - "8080:3000"
+    environment:
+      - DATA_DIR=/data
+    networks:
+      - vpm_network
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: vpm-repo-tunnel
+    restart: unless-stopped
+    command: tunnel run
+    environment:
+      - TUNNEL_TOKEN=${TUNNEL_TOKEN}
+    networks:
+      - vpm_network
+
+networks:
+  vpm_network:
+    driver: bridge

@@ -1,0 +1,7 @@
+{
+  "name": "My Dynamic VPM Repository",
+  "author": "Your Name",
+  "url": "https://vpm.yourdomain.com/index.json",
+  "id": "com.yourdomain.vpm",
+  "baseUrl": "https://vpm.yourdomain.com"
+}

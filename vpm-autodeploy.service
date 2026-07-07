@@ -1,0 +1,16 @@
+[Unit]
+Description=VPM Repository Auto Deploy Monitor
+After=network.target docker.service
+
+[Service]
+Type=simple
+# 以下をご自身のUbuntuユーザー名に変更してください
+User=ubuntu
+# 以下をリポジトリを配置した絶対パスに変更してください
+WorkingDirectory=/path/to/VPM_Repository
+ExecStart=/bin/bash /path/to/VPM_Repository/autodeploy.sh
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

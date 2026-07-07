@@ -1,0 +1,12 @@
+# 秘匿情報
+.env
+
+# Node.js / Nuxtの一時ファイル
+app/node_modules/
+app/.nuxt/
+app/.output/
+
+# 【重要】ダウンロードカウントのJSONファイル
+# サーバー側で自動更新されるため、Gitの追跡から除外し、
+# git pull 時のコンフリクト（衝突）を防ぎます。
+data/packages/**/stats.json
