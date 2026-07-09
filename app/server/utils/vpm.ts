@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 export function getVpmData(hostHeader: string) {
     const DATA_DIR = process.env.DATA_DIR || path.join(process.cwd(), '../data');
@@ -25,6 +26,9 @@ export function getVpmData(hostHeader: string) {
             .map(dirent => dirent.name);
 
         for (const pkgName of packages) {
+            if (pkgName === 'com.example.sample') {
+                continue;
+            }
             const pkgDir = path.join(PACKAGES_DIR, pkgName);
             const infoPath = path.join(pkgDir, 'info.json');
             
@@ -54,13 +58,19 @@ export function getVpmData(hostHeader: string) {
                                 stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
                             }
 
+                            const zipPath = path.join(versionDir, zipFile);
+                            const fileBuffer = fs.readFileSync(zipPath);
+                            const zipSHA256 = crypto.createHash('sha256').update(fileBuffer).digest('hex');
+
                             index.packages[pkgInfo.name || pkgName].versions[version] = {
+                                ...pkgInfo,
                                 name: pkgInfo.name || pkgName,
                                 version: version,
                                 displayName: pkgInfo.displayName || pkgName,
                                 description: pkgInfo.description || "",
                                 author: pkgInfo.author || index.author,
                                 url: `${repoInfo.baseUrl || `https://${hostHeader}`}/download/${pkgName}/${version}/${zipFile}`,
+                                zipSHA256: zipSHA256,
                                 _stats: stats
                             };
                         }

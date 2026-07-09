@@ -1,0 +1,7 @@
+{
+  "name": "net.nickel570.screenshot",
+  "displayName": "Nike's ScreenShot",
+  "description": "Tool to capture screenshots within the scene.",
+  "author": "Nickel570",
+  "vpmDependencies": {}
+}

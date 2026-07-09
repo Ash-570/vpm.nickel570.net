@@ -1,7 +1,7 @@
 {
-  "name": "My Dynamic VPM Repository",
-  "author": "Your Name",
-  "url": "https://vpm.yourdomain.com/index.json",
-  "id": "com.yourdomain.vpm",
-  "baseUrl": "https://vpm.yourdomain.com"
+  "name": "Nickel570 VPM Repository",
+  "author": "Nickel570",
+  "url": "https://vpm.nickel570.net/index.json",
+  "id": "net.nickel570.vpm",
+  "baseUrl": "https://vpm.nickel570.net"
 }
