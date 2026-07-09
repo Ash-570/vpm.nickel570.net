@@ -39,10 +39,7 @@ const copyToClipboard = (text) => {
               Copy URL
             </button>
             <a :href="`vcc://vpm/addRepo?url=${encodeURIComponent(repoInfo.url)}`" class="btn-secondary">
-              Add to VCC
-            </a>
-            <a :href="`alcom://vpm/addRepo?url=${encodeURIComponent(repoInfo.url)}`" class="btn-secondary">
-              Add to ALCOM
+              Add to VCC / ALCOM
             </a>
           </div>
         </div>
