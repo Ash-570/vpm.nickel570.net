@@ -34,9 +34,17 @@ const copyToClipboard = (text) => {
         
         <div class="repo-url-box" v-if="repoInfo?.url">
           <code>{{ repoInfo.url }}</code>
-          <button @click="copyToClipboard(repoInfo.url)" class="btn-primary">
-            Copy VPM URL
-          </button>
+          <div class="action-buttons">
+            <button @click="copyToClipboard(repoInfo.url)" class="btn-primary">
+              Copy URL
+            </button>
+            <a :href="`vcc://vpm/addRepo?url=${encodeURIComponent(repoInfo.url)}`" class="btn-secondary">
+              Add to VCC
+            </a>
+            <a :href="`alcom://vpm/addRepo?url=${encodeURIComponent(repoInfo.url)}`" class="btn-secondary">
+              Add to ALCOM
+            </a>
+          </div>
         </div>
       </header>
 
@@ -216,6 +224,31 @@ code {
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid var(--glass-border);
+  padding: 0.5rem 1.25rem;
+  border-radius: 99px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 .packages-grid {
